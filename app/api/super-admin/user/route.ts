@@ -25,6 +25,7 @@ export async function POST(req: NextRequest) {
 
   try {
     const company = await Company.findById(companyId);
+
     if (!company) {
       return NextResponse.json(
         { message: "Company not found" },
@@ -102,6 +103,8 @@ export async function GET(req: NextRequest) {
       }
 
       const user = await User.findById(userId).populate("companyId");
+      console.log("sadjasdj", user);
+
       if (!user) {
         return NextResponse.json(
           { message: "User not found" },

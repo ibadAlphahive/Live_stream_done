@@ -3,7 +3,7 @@ import mongoose from "mongoose";
 export const BASE_URL = "http://localhost:3000";
 
 export interface ApiUser {
-  _id: string;
+  id: string;
   name: string;
   email: string;
   role: string;

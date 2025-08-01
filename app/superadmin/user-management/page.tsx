@@ -106,9 +106,9 @@ export default function Users() {
 
   const mappedUsers: UserRow[] =
     usersData?.users?.map((user: ApiUser) => ({
-      id: user._id,
+      id: user.id,
       name: user.name,
-      company: user.company?.name || "N/A",
+      company: user.company || "N/A",
       role: user.role,
       email: user.email,
       joinedOn: user.joinedOn,

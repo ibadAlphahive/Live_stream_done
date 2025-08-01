@@ -1,10 +1,12 @@
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import Cookies from "js-cookie";
 import { BASE_URL, AddUserPayload, ApiResponse } from "../../lib/userAPITypes";
-
+import { getAuthToken } from "@/lib/api";
 
 const addUserApi = async (newUser: AddUserPayload): Promise<ApiResponse> => {
-  const authToken = Cookies.get("authToken");
+  const authToken = getAuthToken();
+
+  console.log(authToken);
   if (!authToken) {
     throw new Error("Authentication token not found. Please log in.");
   }
@@ -26,10 +28,10 @@ const addUserApi = async (newUser: AddUserPayload): Promise<ApiResponse> => {
       errorData.message || `Failed to add user: ${response.status}`
     );
   }
-
+  const data = response;
+  console.log(data);
   return response.json();
 };
-
 
 export const useAddUser = () => {
   const queryClient = useQueryClient();
